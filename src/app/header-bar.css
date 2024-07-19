@@ -1,0 +1,28 @@
+.nav-bar {
+  overflow: hidden;
+  display: flex;
+  gap: 16px;
+  height: 60px;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  align-items: center;
+  padding-left: 16px;
+  z-index: 1;
+}
+
+/* Links inside the navbar */
+.nav-bar .nav-item a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.nav-bar .nav-item:hover a {
+  color: #d6b6b6;
+}
