@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from "react";
 import classnames from "classnames";
 import Image from "next/image";
@@ -17,7 +19,12 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
       onClick={handleClick}
     >
       <div className="card-face card-font-face">
-        <Image src="/pokeball.png" width={500} height={500} alt="pokeball" />
+        <Image
+          src="/games-center/pokeball.png"
+          width={500}
+          height={500}
+          alt="pokeball"
+        />
       </div>
       <div className="card-face card-back-face">
         <img src={card.image} alt="pokeball" />

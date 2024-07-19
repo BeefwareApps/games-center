@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -15,27 +16,27 @@ import styles from "./page.module.css";
 const uniqueElementsArray = [
   {
     type: "Pikachu",
-    image: "/Pikachu.png",
+    image: "/games-center/Pikachu.png",
   },
   {
     type: "ButterFree",
-    image: "/ButterFree.png",
+    image: "/games-center/ButterFree.png",
   },
   {
     type: "Charmander",
-    image: "/Charmander.png",
+    image: "/games-center/Charmander.png",
   },
   {
     type: "Squirtle",
-    image: "/Squirtle.png",
+    image: "/games-center/Squirtle.png",
   },
   {
     type: "Pidgetto",
-    image: "/Pidgetto.png",
+    image: "/games-center/Pidgetto.png",
   },
   {
     type: "Bulbasaur",
-    image: "/Bulbasaur.png",
+    image: "/games-center/Bulbasaur.png",
   },
 ];
 
