@@ -35,9 +35,7 @@ export default function Memory() {
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
   const [moves, setMoves] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [bestScore, setBestScore] = useState(
-    JSON.parse(localStorage.getItem("bestScore")) || Number.POSITIVE_INFINITY
-  );
+  const [bestScore, setBestScore] = useState(Number.POSITIVE_INFINITY);
   const timeout = useRef(null);
   const [storage, setStorage] = useState(null);
 
