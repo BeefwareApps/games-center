@@ -27,7 +27,7 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
         />
       </div>
       <div className="card-face card-back-face">
-        <img src={card.image} alt="pokeball" />
+        <Image src={card.image} width={500} height={500} alt="card" />
       </div>
     </div>
   );

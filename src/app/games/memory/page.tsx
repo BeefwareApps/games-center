@@ -12,33 +12,7 @@ import {
 } from "@material-ui/core";
 import Card from "./components/card";
 import styles from "./page.module.css";
-
-const uniqueElementsArray = [
-  {
-    type: "Pikachu",
-    image: "/games-center/Pikachu.png",
-  },
-  {
-    type: "ButterFree",
-    image: "/games-center/ButterFree.png",
-  },
-  {
-    type: "Charmander",
-    image: "/games-center/Charmander.png",
-  },
-  {
-    type: "Squirtle",
-    image: "/games-center/Squirtle.png",
-  },
-  {
-    type: "Pidgetto",
-    image: "/games-center/Pidgetto.png",
-  },
-  {
-    type: "Bulbasaur",
-    image: "/games-center/Bulbasaur.png",
-  },
-];
+import { pokemonCardSet } from "@/app/lib/cards/card-sets";
 
 function shuffleCards(array) {
   const length = array.length;
@@ -53,9 +27,9 @@ function shuffleCards(array) {
 }
 
 export default function Memory() {
-  const [cards, setCards] = useState(
-    shuffleCards.bind(null, uniqueElementsArray.concat(uniqueElementsArray))
-  );
+  const activeCardSet = pokemonCardSet.concat(pokemonCardSet); // two of each card
+
+  const [cards, setCards] = useState(shuffleCards.bind(null, activeCardSet));
   const [openCards, setOpenCards] = useState([]);
   const [clearedCards, setClearedCards] = useState({});
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
@@ -68,6 +42,7 @@ export default function Memory() {
   const disable = () => {
     setShouldDisableAllCards(true);
   };
+
   const enable = () => {
     setShouldDisableAllCards(false);
   };
@@ -78,13 +53,14 @@ export default function Memory() {
   }, []);
 
   const checkCompletion = () => {
-    if (Object.keys(clearedCards).length === uniqueElementsArray.length) {
+    if (Object.keys(clearedCards).length === activeCardSet.length) {
       setShowModal(true);
       const highScore = Math.min(moves, bestScore);
       setBestScore(highScore);
       storage?.setItem("bestScore", highScore);
     }
   };
+
   const evaluate = () => {
     const [first, second] = openCards;
     enable();
@@ -98,6 +74,7 @@ export default function Memory() {
       setOpenCards([]);
     }, 500);
   };
+
   const handleCardClick = (index) => {
     if (openCards.length === 1) {
       setOpenCards((prev) => [...prev, index]);
@@ -122,6 +99,7 @@ export default function Memory() {
   useEffect(() => {
     checkCompletion();
   }, [clearedCards]);
+
   const checkIsFlipped = (index) => {
     return openCards.includes(index);
   };
@@ -137,7 +115,7 @@ export default function Memory() {
     setMoves(0);
     setShouldDisableAllCards(false);
     // set a shuffled deck of cards
-    setCards(shuffleCards(uniqueElementsArray.concat(uniqueElementsArray)));
+    setCards(shuffleCards(activeCardSet));
   };
 
   return (
