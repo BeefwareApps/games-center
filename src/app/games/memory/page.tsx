@@ -27,15 +27,17 @@ function shuffleCards(array) {
 }
 
 export default function Memory() {
-  const activeCardSet = pokemonCardSet.concat(pokemonCardSet); // two of each card
-
-  const [cards, setCards] = useState(shuffleCards.bind(null, activeCardSet));
+  const [cards, setCards] = useState(
+    shuffleCards.bind(null, pokemonCardSet.concat(pokemonCardSet))
+  );
   const [openCards, setOpenCards] = useState([]);
   const [clearedCards, setClearedCards] = useState({});
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
   const [moves, setMoves] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [bestScore, setBestScore] = useState(Number.POSITIVE_INFINITY);
+  const [bestScore, setBestScore] = useState(
+    JSON.parse(localStorage.getItem("bestScore")) || Number.POSITIVE_INFINITY
+  );
   const timeout = useRef(null);
   const [storage, setStorage] = useState(null);
 
@@ -53,7 +55,7 @@ export default function Memory() {
   }, []);
 
   const checkCompletion = () => {
-    if (Object.keys(clearedCards).length === activeCardSet.length) {
+    if (Object.keys(clearedCards).length === pokemonCardSet.length) {
       setShowModal(true);
       const highScore = Math.min(moves, bestScore);
       setBestScore(highScore);
@@ -115,7 +117,7 @@ export default function Memory() {
     setMoves(0);
     setShouldDisableAllCards(false);
     // set a shuffled deck of cards
-    setCards(shuffleCards(activeCardSet));
+    setCards(shuffleCards(pokemonCardSet.concat(pokemonCardSet)));
   };
 
   return (
